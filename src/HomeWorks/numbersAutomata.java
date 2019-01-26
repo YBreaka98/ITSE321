@@ -16,7 +16,7 @@ public class numbersAutomata {
         this.state = 0;
     }
 
-    public void Numbers(Functions e) {
+    public boolean Numbers(Functions e) {
 
         power = e.getIndex() < e.getLen();
         state = 0;
@@ -35,22 +35,28 @@ public class numbersAutomata {
                 case 2 :
                     Check(e);
                     break;
-                case 3 :
-                    /*createToken(new TOKEN("num","int"));
+              /*  case 3 :
+                    *//*createToken(new TOKEN("num","int"));
                     e.retract();
-                    state = 0;*/
-                    break;
+                    state = 0;*//*
+                    break;*/
             }
 
         }
-
+        if(currentChar == '\0')
+            return false;
+        else
+            return true;
     }
 
     public void Check(Functions e) {
           if (CheckNumbers(currentChar) && state == 0) {
             state = 1;
-          } else if (!CheckNumbers(currentChar) && state ==0) {
+          } else if (currentChar == ' ' && state == 0) {
+              state = 0;
+          } else if (!CheckNumbers(currentChar) && state == 0 && currentChar != ' ') {
               e.fail();
+              power = false;
           } else if (currentChar == '.' && state == 1) {
               state = 2;
           } else if (currentChar == '\0' && state == 1) {
@@ -72,6 +78,7 @@ public class numbersAutomata {
               createToken(new TOKEN("num", "float"));
               Functions.last_Index = e.getIndex();
               state = 0;
+              e.retract();
           }
 
     }

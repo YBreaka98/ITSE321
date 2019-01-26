@@ -24,8 +24,9 @@ public class  Functions {
         return '\0';
     }
     public void fail() {
-        System.out.println("Not Accepted");
+        System.out.print(" Not Accepted");
         Index = last_Index;
+
 
     }
 
@@ -33,7 +34,7 @@ public class  Functions {
         Index--;
     }
 
-    public  int getIndex() {
+    public static int getIndex() {
         return Index;
     }
 

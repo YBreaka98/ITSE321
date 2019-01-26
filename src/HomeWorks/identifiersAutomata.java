@@ -9,7 +9,7 @@ public class identifiersAutomata {
     private ArrayList<TOKEN> tokens;
     ArrayList w = new ArrayList();
     String co = "";
-    static int  coun;
+
 
     public identifiersAutomata() {
         this.tokens = new ArrayList<>();
@@ -17,7 +17,7 @@ public class identifiersAutomata {
     }
 
 
-    public void Identifers(Functions e) {
+    public boolean Identifers(Functions e) {
 
         power = e.getIndex() < e.getLen();
         state = 0;
@@ -38,7 +38,10 @@ public class identifiersAutomata {
             }
 
         }
-
+        if(currentChar == '\0')
+            return false;
+        else
+            return true;
     }
 
     private void createToken(TOKEN token) {
@@ -63,8 +66,12 @@ public class identifiersAutomata {
         }
         else if (Character.isAlphabetic(currentChar))
             state = TState;
+        else if (currentChar == ' ' && state == 0) {
+            state = 0;
+        }
         else if (!Character.isAlphabetic(currentChar) && state ==0) {
             e.fail();
+            power = false;
         } else if (state > 0) {
             if (!Character.isAlphabetic(currentChar) && !CheckNumber(currentChar)) {
                 e.retract();
