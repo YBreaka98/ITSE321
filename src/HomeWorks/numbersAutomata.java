@@ -9,6 +9,7 @@ public class numbersAutomata {
     private char currentChar;
     private Boolean power;
     private ArrayList<TOKEN> tokens;
+    private int test = 0;
     ArrayList n = new ArrayList();
 
     public numbersAutomata() {
@@ -43,8 +44,10 @@ public class numbersAutomata {
             }
 
         }
-        if(currentChar == '\0')
+        if(test == 1) {
+            test = 0;
             return false;
+        }
         else
             return true;
     }
@@ -64,21 +67,25 @@ public class numbersAutomata {
               Functions.last_Index = e.getIndex();
               state = 0;
               power = false;
+              test = 1 ;
           } else if (!CheckNumbers(currentChar) && state == 1) {
               createToken(new TOKEN("num", "int"));
               Functions.last_Index = e.getIndex();
               state = 0;
               e.retract();
+              test = 1 ;
           } else if (currentChar == '\0' && state == 2) {
               createToken(new TOKEN("num", "float"));
               Functions.last_Index = e.getIndex();
               state = 0;
               power = false;
+              test = 1 ;
           } else if (!CheckNumbers(currentChar) && state == 2) {
               createToken(new TOKEN("num", "float"));
               Functions.last_Index = e.getIndex();
               state = 0;
               e.retract();
+              test = 1 ;
           }
 
     }

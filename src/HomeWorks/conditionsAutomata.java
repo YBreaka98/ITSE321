@@ -8,6 +8,7 @@ public class conditionsAutomata {
     private char currentChar;
     private Boolean power;
     private ArrayList<TOKEN> tokens;
+    private int test = 0 ;
 
     public conditionsAutomata() {
         this.tokens = new ArrayList<>();
@@ -22,6 +23,7 @@ public class conditionsAutomata {
 
             power = e.getIndex() < e.getLen();
             currentChar = e.nextChar();
+            //System.out.println(currentChar + " " + e.getIndex() );
 
             switch (state) {
                 case 0:
@@ -70,13 +72,13 @@ public class conditionsAutomata {
                     createToken(new TOKEN("Logic","LT_EQ"));
                     Functions.last_Index = e.getIndex();
                     state = 0;
+                    test = 1;
                     break;
                 case 8:
                     createToken(new TOKEN("Logic","LT"));
                     Functions.last_Index = e.getIndex();
-                    if (currentChar != '\0') {
-                        e.retract();
-                    }
+                    e.retract();
+                    test = 1;
                     state = 0;
                     break;
                 case 9:
@@ -86,6 +88,7 @@ public class conditionsAutomata {
                     createToken(new TOKEN("Logic","NOT_EQ"));
                     Functions.last_Index = e.getIndex();
                     state = 0;
+                    test = 1;
                     break;
                 case 10:
                     if (currentChar =='\0') {
@@ -95,16 +98,19 @@ public class conditionsAutomata {
                     Functions.last_Index = e.getIndex();
                     e.retract();
                     state = 0;
+                    test = 1;
                     break;
                 case 11:
                     createToken(new TOKEN("Logic","EQ"));
                     Functions.last_Index = e.getIndex();
                     state = 0;
+                    test = 1;
                     break;
                 case 12:
                     createToken(new TOKEN("Logic","GT_EQ"));
                     Functions.last_Index = e.getIndex();
                     state = 0;
+                    test = 1;
                     break;
                 case 13:
                     if (currentChar =='\0') {
@@ -114,25 +120,31 @@ public class conditionsAutomata {
                     Functions.last_Index = e.getIndex();
                     e.retract();
                     state = 0;
+                    test = 1;
                     break;
                 case 14:
                     createToken(new TOKEN("Logic","OR"));
                     Functions.last_Index = e.getIndex();
                     state = 0;
+                    test = 1;
                     break;
                 case 15:
                     createToken(new TOKEN("Logic","AND"));
                     Functions.last_Index = e.getIndex();
                     state = 0;
+                    test = 1;
                     break;
 
             }
 
         }
-        if(currentChar == '\0')
+        if(test == 1) {
+            test = 0;
             return false;
+        }
         else
             return true;
+
     }
 
     public void Check(Functions e) {

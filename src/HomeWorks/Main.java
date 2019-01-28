@@ -13,11 +13,13 @@ public class Main {
         numbersAutomata b = new numbersAutomata();
         conditionsAutomata c = new conditionsAutomata();
 
-            blah:
-            while (F.getIndex() < F.getLen()) {
+
+            while (F.test()) {
 
                 if (a.Identifers(F)) {
+                    F.retract();
                     if (c.Condition(F)) {
+                        F.retract();
                         if (b.Numbers(F)) {
 
                         }
@@ -25,5 +27,7 @@ public class Main {
 
                 }
             }
+
+
         }
 }

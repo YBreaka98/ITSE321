@@ -9,6 +9,7 @@ public class identifiersAutomata {
     private ArrayList<TOKEN> tokens;
     ArrayList w = new ArrayList();
     String co = "";
+    private int test=0;
 
 
     public identifiersAutomata() {
@@ -25,7 +26,8 @@ public class identifiersAutomata {
 
             power = e.getIndex() < e.getLen();
             currentChar = e.nextChar();
-            if(currentChar!=' ' || currentChar !='\0') {
+            if (currentChar == ' ' || currentChar == '\0') {
+            } else {
                 co = co + currentChar;
             }
             switch (state) {
@@ -38,10 +40,13 @@ public class identifiersAutomata {
             }
 
         }
-        if(currentChar == '\0')
+        if(test == 1) {
+            test = 0;
             return false;
-        else
+        }
+        else {
             return true;
+        }
     }
 
     private void createToken(TOKEN token) {
@@ -54,12 +59,14 @@ public class identifiersAutomata {
     public void CheckChar(Functions e, int TState) {
         if (currentChar == '\0') {
             if (co.length() > 0) {
-                if(!w.contains(co.trim())) {
-                    w.add(co.trim());
+                if(!w.contains(co)) {
+                    w.add(co);
                 }
-                createToken(new TOKEN("id" , String.valueOf(w.indexOf(co.trim()))));
+                createToken(new TOKEN("id" , String.valueOf(w.indexOf(co))));
                 Functions.last_Index = e.getIndex();
                 co = "";
+                test = 1;
+
             }
             co = "";
             power = false;
@@ -75,14 +82,18 @@ public class identifiersAutomata {
         } else if (state > 0) {
             if (!Character.isAlphabetic(currentChar) && !CheckNumber(currentChar)) {
                 e.retract();
-                if (!w.contains(co.trim())) {
-                    w.add(co.trim());
+                if (w.contains(co)) {
+                } else {
+                    w.add(co);
                 }
-                createToken(new TOKEN("id", String.valueOf(w.indexOf(co.trim()))));
+                createToken(new TOKEN("id", String.valueOf(w.indexOf(co))));
                 Functions.last_Index = e.getIndex();
                 co = "";
+                test = 1;
+
             }
         }
+
     }
 
     public static boolean CheckNumber(char c) {

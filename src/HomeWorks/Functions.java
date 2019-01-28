@@ -24,11 +24,20 @@ public class  Functions {
         return '\0';
     }
     public void fail() {
-        System.out.print(" Not Accepted");
+        /*System.out.print(" Not Accepted");*/
         Index = last_Index;
 
 
     }
+
+    public boolean test() {
+        if (Index < (len-1) ) {
+            return true;
+        }
+        return false;
+    }
+
+
 
     public void retract() {
         Index--;
