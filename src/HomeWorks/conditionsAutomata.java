@@ -15,7 +15,7 @@ public class conditionsAutomata {
         this.state = 0;
     }
 
-    public boolean Condition(Functions e) {
+    public void Condition(Functions e) {
 
         power = e.getIndex() < e.getLen();
         state = 0;
@@ -44,11 +44,9 @@ public class conditionsAutomata {
                 case 3:
                     if(currentChar =='=')
                         state = 11;
-                    else {
+                    else
                         e.fail();
                         state = 0;
-                        power = false;
-                    }
                     break;
                 case 4:
                     if(currentChar =='=')
@@ -58,13 +56,13 @@ public class conditionsAutomata {
                     break;
                 case 5:
                     if(currentChar =='|')
-                        state = 14;
+                        state = 11;
                     else
                         state = 0;
                     break;
                 case 6:
                     if(currentChar =='&')
-                        state = 15;
+                        state = 11;
                     else
                         state = 0;
                     break;
@@ -78,7 +76,10 @@ public class conditionsAutomata {
                     createToken(new TOKEN("Logic","LT"));
                     Functions.last_Index = e.getIndex();
                     e.retract();
+<<<<<<< HEAD
                     test = 1;
+=======
+>>>>>>> parent of 0f54abe... FUCK OFF
                     state = 0;
                     break;
                 case 9:
@@ -138,26 +139,27 @@ public class conditionsAutomata {
             }
 
         }
+<<<<<<< HEAD
         if(test == 1) {
             test = 0;
             return false;
         }
         else
             return true;
+=======
+>>>>>>> parent of 0f54abe... FUCK OFF
 
     }
 
     public void Check(Functions e) {
-        if (currentChar =='\0' && state ==0) {
+        if (currentChar =='\0') {
             power =false;
         }
-        else if (currentChar == ' ' )
-            state = 0;
         else if (currentChar == '<')
             state = 1;
         else if (currentChar == '!')
             state = 2;
-        else if (currentChar == '=')
+        else if (currentChar == '-')
             state = 3;
         else if (currentChar == '>')
             state = 4;
@@ -165,10 +167,9 @@ public class conditionsAutomata {
             state = 5;
         else if (currentChar == '&')
             state = 6;
-        else {
+        else
             e.fail();
-            power = false;
-        }
+
 
     }
     private void createToken(TOKEN token) {

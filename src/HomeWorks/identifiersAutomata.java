@@ -9,8 +9,12 @@ public class identifiersAutomata {
     private ArrayList<TOKEN> tokens;
     ArrayList w = new ArrayList();
     String co = "";
+<<<<<<< HEAD
     private int test=0;
 
+=======
+    static int  coun;
+>>>>>>> parent of 0f54abe... FUCK OFF
 
     public identifiersAutomata() {
         this.tokens = new ArrayList<>();
@@ -18,7 +22,7 @@ public class identifiersAutomata {
     }
 
 
-    public boolean Identifers(Functions e) {
+    public void Identifers(Functions e) {
 
         power = e.getIndex() < e.getLen();
         state = 0;
@@ -40,6 +44,7 @@ public class identifiersAutomata {
             }
 
         }
+<<<<<<< HEAD
         if(test == 1) {
             test = 0;
             return false;
@@ -47,6 +52,9 @@ public class identifiersAutomata {
         else {
             return true;
         }
+=======
+
+>>>>>>> parent of 0f54abe... FUCK OFF
     }
 
     private void createToken(TOKEN token) {
@@ -73,12 +81,8 @@ public class identifiersAutomata {
         }
         else if (Character.isAlphabetic(currentChar))
             state = TState;
-        else if (currentChar == ' ' && state == 0) {
-            state = 0;
-        }
         else if (!Character.isAlphabetic(currentChar) && state ==0) {
             e.fail();
-            power = false;
         } else if (state > 0) {
             if (!Character.isAlphabetic(currentChar) && !CheckNumber(currentChar)) {
                 e.retract();

@@ -24,9 +24,12 @@ public class  Functions {
         return '\0';
     }
     public void fail() {
+<<<<<<< HEAD
         /*System.out.print(" Not Accepted");*/
+=======
+        System.out.println("Not Accepted");
+>>>>>>> parent of 0f54abe... FUCK OFF
         Index = last_Index;
-
 
     }
 
@@ -43,7 +46,7 @@ public class  Functions {
         Index--;
     }
 
-    public static int getIndex() {
+    public  int getIndex() {
         return Index;
     }
 

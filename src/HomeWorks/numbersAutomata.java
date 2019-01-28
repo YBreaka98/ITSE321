@@ -17,7 +17,7 @@ public class numbersAutomata {
         this.state = 0;
     }
 
-    public boolean Numbers(Functions e) {
+    public void Numbers(Functions e) {
 
         power = e.getIndex() < e.getLen();
         state = 0;
@@ -36,30 +36,31 @@ public class numbersAutomata {
                 case 2 :
                     Check(e);
                     break;
-              /*  case 3 :
-                    *//*createToken(new TOKEN("num","int"));
+                case 3 :
+                    /*createToken(new TOKEN("num","int"));
                     e.retract();
-                    state = 0;*//*
-                    break;*/
+                    state = 0;*/
+                    break;
             }
 
         }
+<<<<<<< HEAD
         if(test == 1) {
             test = 0;
             return false;
         }
         else
             return true;
+=======
+
+>>>>>>> parent of 0f54abe... FUCK OFF
     }
 
     public void Check(Functions e) {
           if (CheckNumbers(currentChar) && state == 0) {
             state = 1;
-          } else if (currentChar == ' ' && state == 0) {
-              state = 0;
-          } else if (!CheckNumbers(currentChar) && state == 0 && currentChar != ' ') {
+          } else if (!CheckNumbers(currentChar) && state ==0) {
               e.fail();
-              power = false;
           } else if (currentChar == '.' && state == 1) {
               state = 2;
           } else if (currentChar == '\0' && state == 1) {
@@ -84,8 +85,11 @@ public class numbersAutomata {
               createToken(new TOKEN("num", "float"));
               Functions.last_Index = e.getIndex();
               state = 0;
+<<<<<<< HEAD
               e.retract();
               test = 1 ;
+=======
+>>>>>>> parent of 0f54abe... FUCK OFF
           }
 
     }
